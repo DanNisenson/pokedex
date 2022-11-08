@@ -1,38 +1,358 @@
-.App {
-  text-align: center;
+/* Box sizing & margin rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+/* !! ADD TABINDEX to '#' HREFs !! | Solves cmd + F slow scrolling */
+html:focus-within {
+  scroll-behavior: smooth;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Set core body defaults */
+body {
+  font-size: 16px;
+  min-height: 100vh;
+  line-height: 1.5;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+/* Remove list styles on ul, ol element */
+ul,
+ol {
+  list-style: none;
+}
+
+/* remove underline from 'a' elements */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Make images easier to work with */
+img,
+picture {
+  max-width: 100%;
+  /* display: block; */
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* ------------------------------------------------------------------------ */
+
+body {
+  font-family: "Noto Sans", Arial, sans-serif;
+}
+
+img {
+  display: inline;
+}
+
+p {
+  display: inline;
+}
+
+main {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+    url("https://media.istockphoto.com/id/1035676256/photo/background-of-galaxy-and-stars.jpg?s=612x612&w=0&k=20&c=dh7eWJ6ovqnQZ9QwQQlq2wxqmAR7mgRlQTgaIylgBwc=");
+  background-repeat: repeat;
+  background-size: 100vw;
+  color: #fefefe;
+  text-shadow: 0 0 10px rgb(255, 255, 255);
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.title-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 250px;
+  /* border: 1px solid #fefefe; */
+  border-radius: 6px 50px;
+  box-shadow: 0 0 5px rgba(22, 181, 225, 1);
+  background: radial-gradient(
+    circle,
+    rgba(22, 181, 225, 1) 0%,
+    rgba(22, 181, 225, 0.8) 60%,
+    rgba(22, 181, 225, 0.6) 100%
+  );
+  /* color: black; */
+  text-shadow: 0 0 5px rgb(0 0 0 /75%);
+}
+
+.title-box h1 {
+  /* padding: 5px; */
+}
+
+.index {
+  display: flex;
+  justify-content: center;
+}
+
+.pages-index {
+  padding: 3px;
+}
+
+.pages-index:hover {
+  cursor: pointer;
+}
+
+.pokemons {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.pkCards {
+  background-color: rgba(0, 0, 0, 0.7);
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 8px;
+  padding: 10px;
+  width: 250px;
+  height: 290px;
+  border: 1px solid gray;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.6) inset;
+  color: #fefefe;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+  overflow: hidden;
+}
+
+.thumbnails {
+  width: 130px;
+  height: 130px;
+}
+
+.top-info {
+  margin: 0 0 10px 0;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  text-align: center;
 }
 
-.App-link {
-  color: #61dafb;
+.types {
+  display: flex;
+  margin: 0 0 10px 0;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.type-box {
+  width: 75px;
+  margin: 3px;
+  border-radius: 20px;
+  text-align: center;
+  text-shadow: 0 0 5px rgb(0 0 0 / 75%);
+}
+
+.info-button {
+  margin-bottom: 5px;
+  width: 50%;
+  border: none;
+  border-radius: 20px;
+  /* align-self: flex-start; */
+  background: none;
+  color: #fefefe;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 1);
+  transition: all 0.3s ease-in-out;
+}
+
+.info-button:hover {
+  cursor: pointer;
+  text-shadow: 0 0 1px rgba(255, 255, 255, 1);
+  transform: scale(1.2);
+}
+
+.stats {
+  display: none;
+}
+
+.visible {
+  display: block;
+}
+
+.expanded {
+  animation: expand 1s ease-in-out;
+  height: 340px;
+}
+
+/* .contracted {
+  height: auto;
+  animation: contract 1s ease-in-out;
+} */
+
+@keyframes expand {
+  0% {
+    height: 290px;
   }
-  to {
-    transform: rotate(360deg);
+  100% {
+    height: 340px;
   }
+}
+@keyframes contract {
+  0% {
+    height: 340px;
+  }
+  100% {
+    height: 290px;
+  }
+}
+
+.stat-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.points {
+  display: flex;
+  align-items: center;
+}
+
+.dots {
+  margin: 5px 1px;
+  width: 13px;
+  height: 13px;
+  border-radius: 100%;
+  background: rgb(22, 181, 225);
+  background: radial-gradient(
+    circle,
+    rgba(22, 181, 225, 1) 0%,
+    rgba(22, 181, 225, 0.8) 50%,
+    rgba(22, 181, 225, 0) 100%
+  );
+  box-shadow: 0 0 5px rgba(22, 181, 225, 0.5);
+}
+
+.dots-gray {
+  margin: 5px 1px;
+  width: 12px;
+  height: 12px;
+  border-radius: 100%;
+  border: 1px solid rgba(22, 181, 225, 0.5);
+  box-shadow: 0 0 5px rgba(22, 181, 225, 0.5);
+}
+
+/* pokemon type box colors */
+
+.Grass {
+  background-color: #91be19;
+  border: 2px solid #b5f000;
+  box-shadow: 0 0 0.25em 0.03em #91be19;
+}
+.Poison {
+  background-color: #bd78bd;
+  border: 2px solid #d08cd1;
+  box-shadow: 0 0 0.25em 0.03em #bd78bd;
+}
+.Fire {
+  background-color: #ff3700;
+  border: 2px solid #ff6900;
+  box-shadow: 0 0 0.25em 0.03em #ff3700;
+}
+.Dragon {
+  background-color: #3c64c8;
+  border: 2px solid #5078dc;
+  box-shadow: 0 0 0.25em 0.03em #3c64c8;
+}
+.Flying {
+  background-color: #79bcd7;
+  border: 2px solid #78dcff;
+  box-shadow: 0 0 0.25em 0.03em #79bcd7;
+}
+.Water {
+  background-color: #0094e5;
+  border: 2px solid #14b9ff;
+  box-shadow: 0 0 0.25em 0.03em #0094e5;
+}
+.Bug {
+  background-color: #32b432;
+  border: 2px solid #46c846;
+  box-shadow: 0 0 0.25em 0.03em #32b432;
+}
+.Electric {
+  background-color: #e4b700;
+  border: 2px solid #ffe100;
+  box-shadow: 0 0 0.25em 0.03em #e4b700;
+}
+.Ground {
+  background-color: #cca142;
+  border: 2px solid #fac85a;
+  box-shadow: 0 0 0.25em 0.03em #cca142;
+}
+.Normal {
+  background-color: #a0a0a0;
+  border: 2px solid #dcdcdc;
+  box-shadow: 0 0 0.25em 0.03em #a0a0a0;
+}
+.Fairy {
+  background-color: #ff7eb8;
+  border: 2px solid #ffafdc;
+  box-shadow: 0 0 0.25em 0.03em #ff7eb8;
+}
+.Dark {
+  background-color: #646464;
+  border: 2px solid #787878;
+  box-shadow: 0 0 0.25em 0.03em #646464;
+}
+.Psychic {
+  background-color: #dc78c8;
+  border: 2px solid #f08cdc;
+  box-shadow: 0 0 0.25em 0.03em #dc78c8;
+}
+.Ice {
+  background-color: #00b7ee;
+  border: 2px solid #14f5ff;
+  box-shadow: 0 0 0.25em 0.03em #00b7ee;
+}
+.Fighting {
+  background-color: #c85500;
+  border: 2px solid #dc6900;
+  box-shadow: 0 0 0.25em 0.03em #c85500;
+}
+.Steel {
+  background-color: #96b4dc;
+  border: 2px solid #aac8f0;
+  box-shadow: 0 0 0.25em 0.03em #96b4dc;
+}
+.Rock {
+  background-color: #a07850;
+  border: 2px solid #b48c64;
+  box-shadow: 0 0 0.25em 0.03em #a07850;
+}
+.Ghost {
+  background-color: #8c78f0;
+  border: 2px solid #a08cff;
+  box-shadow: 0 0 0.25em 0.03em #8c78f0;
 }
