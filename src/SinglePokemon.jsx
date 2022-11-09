@@ -2,7 +2,6 @@
 import Stats from "./Stats.jsx";
 
 const SinglePokemon = (props) => {
- 
 
   return (
     <div key={props.id} className="pkCards">
@@ -26,7 +25,7 @@ const SinglePokemon = (props) => {
       </div>
       
       {/* attack and defense point stats */}
-      <Stats atk={props.atk} def={props.def}  /> 
+      <Stats atk={props.atk} def={props.def} spec={props.spec} speed={props.speed} /> 
     </div>
   );
 };

@@ -1,57 +1,21 @@
 import { useState } from "react";
 import PokemonsData from "./PokemonsData.json";
 import SinglePokemon from "./SinglePokemon";
-// import PageIndex from "./PageIndex.jsx";
+import PageIndex from "./PageIndex.jsx";
+
+// !!! Por que funciona?? pasa state de child a padre !!!
 
 const Pokemons = () => {
   const [currentPage, setCurrentPage] = useState(1);
 
-  // make index numbers
-  let index = [];
-  let aux = 0;
-  for (let i = 0; i < PokemonsData.length; i += 50) {
-    aux++;
-    index.push(aux);
-  }
-
-  // page navigation arrows functions
-  const pageDown = () => {
-    if (currentPage > 1) {
-      setCurrentPage(currentPage - 1);
-    }
+  const calcSpec = (spAtk, spDef) => {
+    let spec = Math.floor((spAtk + spDef) / 2 / 10);
+    return spec > 10 ? 10 : spec;
   };
-  const pageUp = () => {
-    if (currentPage < index[index.length - 1]) {
-      setCurrentPage(currentPage + 1);
-    }
-  };
-
   // HTML return
   return (
     <>
-      {/* page index */}
-      <div className="index">
-        {/* Page down */}
-        <p className="pages-index" onClick={pageDown}>
-          &#8249;
-        </p>
-
-        {/* index numbers */}
-        {index.map((each) => (
-          <p
-            className="pages-index"
-            key={each}
-            onClick={(e) => setCurrentPage(parseInt(e.target.innerHTML))}
-          >
-            {each}
-          </p>
-        ))}
-        {/* !!! */}
-        {/* page up | !!!! onClick={()=>{pageUp; console.log(currentPage)}} doesnt work ??? */}
-        <p className="pages-index" onClick={pageUp}>
-          &#8250;
-        </p>
-      </div>
+      <PageIndex currentPage={currentPage} setCurrentPage={setCurrentPage} />
 
       {/* pokemon cards  */}
       <div className="pokemons">
@@ -66,12 +30,20 @@ const Pokemons = () => {
               nameEng={each.name.english}
               type={each.type}
               species={each.species}
-              atk={Math.round(each.base.Attack / 10)}
-              def={Math.round(each.base.Defense / 10)}
+              atk={each.base ? Math.round(each.base.Attack / 10) : 0}
+              def={each.base ? Math.round(each.base.Defense / 10) : 0}
+              spec={
+                each.base
+                  ? calcSpec(each.base["Sp. Attack"], each.base["Sp. Defense"])
+                  : 0
+              }
+              speed={each.base ? Math.round(each.base.Speed / 10) : 0}
             />
           )
         )}
       </div>
+
+      <PageIndex currentPage={currentPage} setCurrentPage={setCurrentPage} />
     </>
   );
 };

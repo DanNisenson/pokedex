@@ -120,11 +120,12 @@ main {
 
 .pages-index {
   padding: 3px;
+  font-size: 1.2em;
 }
 
-.pages-index:hover {
+/* .pages-index:hover {
   cursor: pointer;
-}
+} */
 
 .pokemons {
   display: flex;
@@ -140,7 +141,7 @@ main {
   margin: 8px;
   padding: 10px;
   width: 250px;
-  height: 290px;
+  height: 300px;
   border: 1px solid gray;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.6) inset;
@@ -152,6 +153,7 @@ main {
 .thumbnails {
   width: 130px;
   height: 130px;
+  margin: 5px;
 }
 
 .top-info {
@@ -179,15 +181,18 @@ main {
   margin-bottom: 5px;
   width: 50%;
   border: none;
-  border-radius: 20px;
+  /* border-radius: 20px; */
   /* align-self: flex-start; */
   background: none;
   color: #fefefe;
   text-shadow: 0 0 5px rgba(255, 255, 255, 1);
+}
+
+.text-hover {
   transition: all 0.3s ease-in-out;
 }
 
-.info-button:hover {
+.text-hover:hover {
   cursor: pointer;
   text-shadow: 0 0 1px rgba(255, 255, 255, 1);
   transform: scale(1.2);
@@ -195,6 +200,8 @@ main {
 
 .stats {
   display: none;
+  width: 93%;
+  text-shadow: 0 0 4px rgba(255, 255, 255, 1);
 }
 
 .visible {
@@ -203,7 +210,7 @@ main {
 
 .expanded {
   animation: expand 1s ease-in-out;
-  height: 340px;
+  height: 400px;
 }
 
 /* .contracted {
@@ -213,18 +220,18 @@ main {
 
 @keyframes expand {
   0% {
-    height: 290px;
+    height: 300px;
   }
   100% {
-    height: 340px;
+    height: 400px;
   }
 }
 @keyframes contract {
   0% {
-    height: 340px;
+    height: 400px;
   }
   100% {
-    height: 290px;
+    height: 300px;
   }
 }
 
@@ -242,8 +249,8 @@ main {
 
 .dots {
   margin: 5px 1px;
-  width: 13px;
-  height: 13px;
+  width: 12px;
+  height: 12px;
   border-radius: 100%;
   background: rgb(22, 181, 225);
   background: radial-gradient(
