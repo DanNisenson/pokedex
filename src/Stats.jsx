@@ -2,21 +2,23 @@ import { useState } from "react";
 
 const Stats = (props) => {
   const [displayValue, setDisplayValue] = useState("false");
-
+  // console.log('init' + displayValue)
   // show and hide stats function. toggle css classes
   const readMore = (target) => {
+    console.log(target)
     if (displayValue === false) {
+      // console.log(displayValue + 'if false')
       //  !!!
-      //  !!! when add - remove next line not working !!!!
-      target.parentNode.classList.toggle("expanded");
-      // target.parentNode.classList.remove("contracted");
-      target.nextSibling.classList.toggle("visible");
-    } else {
-      // target.parentNode.classList.add("contracted");
-      target.parentNode.classList.toggle("expanded");
-      target.nextSibling.classList.toggle("visible");
+      //  !!! first run displayValue == false pero ejecuta else !!!!
+      target.nextSibling.classList.add("stats-expanded");
+      target.nextSibling.classList.remove("stats-contracted");
+    } else if (displayValue === true){
+      // console.log(displayValue + 'if true')
+      target.nextSibling.classList.remove("stats-expanded");
+      target.nextSibling.classList.add("stats-contracted");
     }
     setDisplayValue(!displayValue);
+    // console.log(displayValue)
   };
 
   //  store stat points elements

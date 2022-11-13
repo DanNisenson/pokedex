@@ -21,8 +21,7 @@ const Pokemons = () => {
       <div className="pokemons">
         {PokemonsData.slice((currentPage - 1) * 50, currentPage * 50).map(
           (each) => (
-            //  !!!!!
-            //  !!!!! why not? console.log(currentPage);
+            
             <SinglePokemon
               key={each.id}
               id={each.id}
@@ -30,14 +29,14 @@ const Pokemons = () => {
               nameEng={each.name.english}
               type={each.type}
               species={each.species}
-              atk={each.base ? Math.round(each.base.Attack / 10) : 0}
-              def={each.base ? Math.round(each.base.Defense / 10) : 0}
+              atk={each.base ? Math.min(Math.round(each.base.Attack / 10), 10) : 0}
+              def={each.base ? Math.min(Math.round(each.base.Defense / 10), 10) : 0}
               spec={
                 each.base
                   ? calcSpec(each.base["Sp. Attack"], each.base["Sp. Defense"])
                   : 0
               }
-              speed={each.base ? Math.round(each.base.Speed / 10) : 0}
+              speed={each.base ? Math.min(Math.round(each.base.Speed / 10), 10) : 0}
             />
           )
         )}
