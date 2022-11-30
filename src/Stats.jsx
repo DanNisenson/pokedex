@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 const Stats = (props) => {
-  const [displayValue, setDisplayValue] = useState("false");
+  const [displayValue, setDisplayValue] = useState(false);
   // console.log('init' + displayValue)
   // show and hide stats function. toggle css classes
   const readMore = (target) => {
@@ -56,7 +56,7 @@ const Stats = (props) => {
   return (
     <>
     {/* show stats button */}
-      <button className="info-button text-hover" onClick={(e) => readMore(e.target)}>
+      <button className="info-button text-hover" onClick={(e) => {readMore(e.target)}}>
         Stats
       </button>
       {/* stats rows | default hidden */ }

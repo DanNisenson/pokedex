@@ -5,7 +5,7 @@ const Title = () => {
   const [randomPokemon, setRandomPokemon] = useState(1);
 
   useEffect(() => {
-    setRandomPokemon(PokemonsData[Math.floor(Math.random() * PokemonsData.length)]);
+    setRandomPokemon(Math.floor(Math.random() * PokemonsData.length));
   }, [])
   
   console.log(randomPokemon);
@@ -15,7 +15,7 @@ const Title = () => {
         <h1>Pokedex</h1>
       </span>
 
-      {/* <img src={randomPokemon.image.thumbnail} alt={randomPokemon.name.english} /> */}
+      <img className='thumbnails' src={PokemonsData[randomPokemon].image.thumbnail}  />
     </div>
   );
 };
